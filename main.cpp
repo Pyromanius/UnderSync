@@ -10,20 +10,23 @@
 using namespace std;
 
 void readFile(const string& filePath) {
+    
     ifstream file(filePath);
+    string line;
+    string outputFilePath = filePath + "_newFile.srt";
+    ofstream outFile(outputFilePath);
+
+
     if (!file.is_open()) {
         cerr << "Error: Could not open the file " << filePath << endl;
         return;
     }
 
-    string outputFilePath = filePath + "_newFile.srt";
-    ofstream outFile(outputFilePath);
     if (!outFile.is_open()) {
         cerr << "Error: Could not create the file " << outputFilePath << endl;
         return;
     }
 
-    string line;
     while (getline(file, line)) {
         if (!line.empty()) {
             if (is_valid_time(line)) {
@@ -31,6 +34,10 @@ void readFile(const string& filePath) {
             }
             outFile << line << endl;
         }
+
+        // Add empty line after each instance.
+        else
+        outFile << endl;
     }
 
     file.close();
