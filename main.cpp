@@ -144,7 +144,7 @@ int main() {
         return 1;
     }
 
-    cout << "File was chosen. Enter x seconds to delay (-x to push forward): " << endl;
+    cout << "File was chosen. Enter x seconds to subtract (-x to add): " << endl;
     cin >> time_to_add;
 
     readFile(filePath);
